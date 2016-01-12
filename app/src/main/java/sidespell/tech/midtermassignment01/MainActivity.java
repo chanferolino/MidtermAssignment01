@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-    // Array of strings storing country names
     String[] countries = new String[] {
             "India",
             "Pakistan",
@@ -29,8 +28,6 @@ public class MainActivity extends Activity {
             "South Korea",
             "Japan"
     };
-
-    // Array of integers points to images stored in /res/drawable-ldpi/
     int[] flags = new int[]{
             R.drawable.india,
             R.drawable.pakistan,
@@ -44,7 +41,7 @@ public class MainActivity extends Activity {
             R.drawable.japan
     };
 
-    // Array of strings to store currencies
+
     String[] currency = new String[]{
             "Indian Rupee",
             "Pakistani Rupee",
