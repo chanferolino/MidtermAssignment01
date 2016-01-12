@@ -13,8 +13,21 @@
     tools:context="sidespell.tech.midtermassignment01.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <AutoCompleteTextView
+        android:id="@+id/autocomplete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"
+        android:hint="@string/str_hnt_autocomplete"
+        android:completionThreshold="1"
+        />
+
     <TextView
+        android:id="@+id/tv_currency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/autocomplete"
+        />
 </RelativeLayout>
