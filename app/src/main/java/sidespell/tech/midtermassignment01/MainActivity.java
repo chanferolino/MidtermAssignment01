@@ -63,7 +63,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Each row in the list stores country name, currency and flag
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
 
         for(int i=0;i<10;i++){
@@ -74,60 +73,38 @@ public class MainActivity extends Activity {
             aList.add(hm);
         }
 
-        // Keys used in Hashmap
         String[] from = { "flag","txt"};
 
-        // Ids of views in listview_layout
         int[] to = { R.id.flag,R.id.txt};
 
-        // Instantiating an adapter to store each items
-        // R.layout.listview_layout defines the layout of each item
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.autocomplete_layout, from, to);
 
-        // Getting a reference to CustomAutoCompleteTextView of activity_main.xml layout file
         AutoCompleteTextView autoComplete = ( AutoCompleteTextView) findViewById(R.id.autocomplete);
 
-        /** Defining an itemclick event listener for the autocompletetextview */
         OnItemClickListener itemClickListener = new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
 
-                /** Each item in the adapter is a HashMap object.
-                 *  So this statement creates the currently clicked hashmap object
-                 * */
                 HashMap<String, String> hm = (HashMap<String, String>) arg0.getAdapter().getItem(position);
 
-                /** Getting a reference to the TextView of the layout file activity_main to set Currency */
                 TextView tvCurrency = (TextView) findViewById(R.id.tv_currency) ;
 
-                /** Getting currency from the HashMap and setting it to the textview */
                 tvCurrency.setText("Currency : " + hm.get("cur"));
             }
         };
 
-        /** Setting the itemclick event listener */
         autoComplete.setOnItemClickListener(itemClickListener);
 
-        /** Setting the adapter to the listView */
         autoComplete.setAdapter(adapter);
 
     }
-
-    /** A callback method, which is executed when this activity is about to be killed
-     * This is used to save the current state of the activity
-     * ( eg :  Configuration changes : portrait -> landscape )
-     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         TextView tvCurrency = (TextView) findViewById(R.id.tv_currency) ;
         outState.putString("currency", tvCurrency.getText().toString());
         super.onSaveInstanceState(outState);
     }
-
-    /** A callback method, which is executed when the activity is recreated
-     * ( eg :  Configuration changes : portrait -> landscape )
-     */
-    @Override
+   @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         TextView tvCurrency = (TextView) findViewById(R.id.tv_currency) ;
         tvCurrency.setText(savedInstanceState.getString("currency"));
